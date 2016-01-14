@@ -11,6 +11,8 @@
 var React = require('react');
 var sortBy = require('sort-by');
 
+var { div, ul, li, h1 } = React.DOM;
+
 var DATA = {
   title: 'Menu',
   items: [
@@ -21,9 +23,20 @@ var DATA = {
   ]
 };
 
+var menuItems = DATA.items.filter( (item) => item.type === 'mexican' )
+                          .sort( sortBy('name') )
+                          .map( (item) => <li>{item.name}</li> );
+
 var Menu = React.createClass({
   render () {
-    return null;
+    return (
+      <div>
+        <h1>{DATA.title}</h1>
+        <ul>
+          {menuItems}
+        </ul>
+      </div>
+    );
   }
 });
 
