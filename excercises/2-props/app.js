@@ -24,7 +24,7 @@ var warning = require('react/lib/warning');
 var GRAVATAR_URL = "http://gravatar.com/avatar";
 
 var USERS = [
-  { id: 1, name: 'Ryan Florence', email: 'rpflorencegmail.com' },
+  { id: 1, name: 'Ryan Florence', email: 'rpflorence@gmail.com' },
   { id: 2, name: 'Michael Jackson', email: 'mjijackson@gmail.com' }
 ];
 
@@ -36,13 +36,9 @@ var emailType = (props, propName, componentName) => {
   );
 };
 
-var intParser = (size) => {
-  return typeof parseInt(size) === 'number';
-}
-
-var sizeCheck = (props, propName, componentName) => {
+var sizeType = (props, propName, componentName) => {
   warning(
-    intParser(props[propName]), // given solution:  !isNaN(parseInt(props[propName]))
+    !isNaN(parseInt(props[propName])),
     `Invalid number '${props[propName]}'. Check the size property in '${componentName}'.`
   );
 };
@@ -50,7 +46,7 @@ var sizeCheck = (props, propName, componentName) => {
 var Gravatar = React.createClass({
   propTypes: {
     email: emailType,
-    size: sizeCheck
+    size: sizeType
   },
 
   getDefaultProps () {
