@@ -12,7 +12,7 @@ var DATA = [
 ];
 
 var App = React.createClass({
-  
+
   getInitialState () {
     return {
       currentCountryIndex: 0
@@ -30,6 +30,7 @@ var App = React.createClass({
     return this.props.countries.map((country, index) => {
       return (
         <div
+          key={country.name}
           onClick={this.tabClick.bind(this, index)} 
           style={index === this.state.currentCountryIndex ? styles.activeTab : styles.tab}
         >
