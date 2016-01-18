@@ -18,23 +18,20 @@ var App = React.createClass({
     }
   },
 
-  tabClick () {
-    var tabNumber = 0;
-    if ( this.state.currentCountry === DATA.length-1 ) {
-      null;
-    } else {
-      tabNumber = this.state.currentCountry + 1
-    }
+  tabClick (index) {
+    var tabNumber = index;
     this.setState({
-      currentCountry: tabNumber
+      currentCountry: index
     })
   },
 
   renderTabs () {
     return this.props.countries.map((country, index) => {
-      console.log('country', country, 'index', index)
       return (
-        <div onClick={this.tabClick} className={country.name} style={index === this.state.currentCountry ? styles.activeTab : styles.tab}>
+        <div
+          onClick={this.tabClick.bind(this, index)} 
+          style={index === this.state.currentCountry ? styles.activeTab : styles.tab}
+        >
           {country.name}
         </div>
       );
